@@ -10,32 +10,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class Day1SolverTest {
+public class Day2SolverTest {
 
     @MockitoBean
     IDayInputService dayInputService;
 
     @Autowired
-    Day1Solver solver;
+    Day2Solver solver;
 
     @Test
     public void solvesDay1Problem() throws Exception {
         final String input = """
-                3   4
-                4   3
-                2   5
-                1   3
-                3   9
-                3   3""";
+                7 6 4 2 1
+                1 2 7 8 9
+                9 7 6 2 1
+                1 3 2 4 5
+                8 6 4 4 1
+                1 3 6 7 9""";
 
-        var fakeInput = new DayInput(1L, input.getBytes());
+        var fakeInput = new DayInput(2L, input.getBytes());
 
-        when(dayInputService.getInput(1)).thenReturn(fakeInput);
+        when(dayInputService.getInput(2L)).thenReturn(fakeInput);
 
         var solution = solver.solveProblem();
 
-        assertEquals("11", solution.answer());
-        assertEquals("31", solution.bonusAnswer());
+        assertEquals("2", solution.answer());
     }
 
 }
