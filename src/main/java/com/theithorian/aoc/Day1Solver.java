@@ -29,8 +29,9 @@ public class Day1Solver implements Solver {
         var data = getArraysFromData(dayInput.inputData());
 
         var solution = sumDifference(data);
+        var bonusSolution = sumFrequencyProduct(data);
 
-        return new Solution<String>(solution.toString());
+        return new Solution<String>(solution.toString(), bonusSolution.toString());
     }
 
     private ArrayData getArraysFromData(byte[] inputData) {
@@ -63,6 +64,28 @@ public class Day1Solver implements Solver {
         }
 
         return sum;
+    }
+
+    public Integer sumFrequencyProduct(ArrayData data) {
+        var counter = getCounter(data.arr2);
+
+        Integer sum = 0;
+
+        for (Integer number : data.arr1) {
+            sum += counter.getCount(number) * number;
+        }
+
+        return sum;
+    }
+
+    private Counter<Integer> getCounter(List<Integer> numberList) {
+        var counter = new Counter<Integer>();
+
+        for (Integer integer : numberList) {
+            counter.add(integer);
+        }
+
+        return counter;
     }
 
 }

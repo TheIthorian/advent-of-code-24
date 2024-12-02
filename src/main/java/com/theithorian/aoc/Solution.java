@@ -1,4 +1,4 @@
 package com.theithorian.aoc;
 
-public record Solution<T>(T answer) {
+public record Solution<T>(T answer, T bonusAnswer) {
 }

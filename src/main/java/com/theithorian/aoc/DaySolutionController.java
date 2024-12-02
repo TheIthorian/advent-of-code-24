@@ -12,7 +12,7 @@ public class DaySolutionController {
     DaySolverFactory solverFactory;
 
     @GetMapping("api/day/{dayId}/solution")
-    Solution<String> getInput(@PathVariable long dayId) {
+    Solution<String> getSolutionForDay(@PathVariable long dayId) {
         var solver = solverFactory.getSolverForDay(dayId);
         return solver.solveProblem();
     }

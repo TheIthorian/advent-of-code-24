@@ -33,5 +33,7 @@ public class Day1SolverTest {
         var solution = solver.solveProblem();
 
         assertEquals("11", solution.answer());
+        assertEquals("31", solution.bonusAnswer());
     }
+
 }
