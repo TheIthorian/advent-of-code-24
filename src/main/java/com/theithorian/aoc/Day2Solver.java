@@ -1,6 +1,5 @@
 package com.theithorian.aoc;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Day2Solver implements Solver {
+
     @Autowired
     IDayInputService dayInputService;
 
@@ -76,9 +76,9 @@ public class Day2Solver implements Solver {
             Boolean canUseDampener = dampenerCount > 0;
 
             if (!isSafe && canUseDampener)
-                return isReportSafe(removeIndexFromList(report, i), dampenerCount - 1)
-                        || isReportSafe(removeIndexFromList(report, 0), dampenerCount - 1)
-                        || isReportSafe(removeIndexFromList(report, report.size() - 1), dampenerCount - 1);
+                return isReportSafe(ArrayUtils.removeIndexFromList(report, i), dampenerCount - 1)
+                        || isReportSafe(ArrayUtils.removeIndexFromList(report, 0), dampenerCount - 1)
+                        || i > 0 && isReportSafe(ArrayUtils.removeIndexFromList(report, i - 1), dampenerCount - 1);
 
             if (!isSafe)
                 return false;
@@ -101,21 +101,11 @@ public class Day2Solver implements Solver {
         return true;
     }
 
-    private static <T> List<T> removeIndexFromList(List<T> list, int index) {
-        List<T> filteredArray = new ArrayList<T>();
-
-        for (int i = 0; i < list.size(); i++) {
-            if (i != index)
-                filteredArray.add(list.get(i));
-        }
-
-        return filteredArray;
-    }
-
     private Direction getDirection(Integer a, Integer b) {
         if (a.equals(b))
             return Direction.Neutral;
 
         return b > a ? Direction.Ascending : Direction.Descending;
     }
+
 }

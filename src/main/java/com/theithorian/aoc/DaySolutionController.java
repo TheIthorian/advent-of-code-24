@@ -12,9 +12,13 @@ public class DaySolutionController {
     DaySolverFactory solverFactory;
 
     @GetMapping("api/day/{dayId}/solution")
-    Solution<String> getSolutionForDay(@PathVariable long dayId) {
+    SolutionWithTime<String> getSolutionForDay(@PathVariable long dayId) {
+        var initialTime = System.nanoTime();
+
         var solver = solverFactory.getSolverForDay(dayId);
-        return solver.solveProblem();
+        var solution = solver.solveProblem().setExecutionTime((System.nanoTime() - initialTime) / 1_000_000);
+
+        return solution;
     }
 
 }
