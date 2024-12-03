@@ -35,6 +35,7 @@ public class Day2SolverTest {
         var solution = solver.solveProblem();
 
         assertEquals("2", solution.answer());
+        assertEquals("4", solution.bonusAnswer());
     }
 
 }
